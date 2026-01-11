@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 
 const app = express();
+app.use(require('cors')({ origin: '*' }));
 const cors = require('cors');
 app.use(cors({ origin: '*' }));  // Allow all frontend requests
 const PORT = 3000;
