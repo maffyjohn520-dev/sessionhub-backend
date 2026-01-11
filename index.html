@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SessionHub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: #e5e7eb;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 12px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 6px;
+      background: #22c55e;
+      color: #022c22;
+    }
+
+    button:hover {
+      background: #16a34a;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>SessionHub Frontend</h1>
+  <button onclick="ping()">Ping Backend</button>
+  <p id="result">Waiting...</p>
+
+  <script>
+    const API_URL = "https://sessionhub-backend-production-f73b.up.railway.app/";
+
+    async function ping() {
+      const result = document.getElementById("result");
+      result.innerText = "Pinging backend...";
+
+      try {
+        const res = await fetch(API_URL);
+        const text = await res.text();
+        result.innerText = text;
+      } catch (error) {
+        result.innerText = "Failed to respond ❌";
+        console.error(error);
+      }
+    }
+  </script>
+
+</body>
+</html>
